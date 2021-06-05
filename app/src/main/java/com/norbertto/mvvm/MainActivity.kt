@@ -24,10 +24,12 @@ class MainActivity : AppCompatActivity() {
         //para instaciar e executar o cliclo de vida da forma correta o sistema que instancia minha classe
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        //dessa forma o textWelcome está sendo observado no MainViewMode
         viewModel.textWelcome.observe(this, Observer {
             textWelcome.text = it
         })
 
+        //pegando o evento de click e usando o meu viewModel para validar
         viewModel.login.observe(this, Observer {
             if(it) {
                 Toast.makeText(applicationContext, "Sucesso", Toast.LENGTH_LONG).show()
