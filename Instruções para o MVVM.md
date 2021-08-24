@@ -36,3 +36,29 @@ Learn MVVM Android Architecture
     Observação: Para instanciar uma variável Mutable é necessário usar o .value
   
   Dessa forma a activity já está observando as alterações feitas no ViewModel
+  
+  Para essa aplicação ele vai verificar o envento de click do botão login
+  Neste caso lá na activity
+  1º ele chama uma função da viewModel chamada login
+  2º ele vai na viewModel e cria essa função
+  3º como o objetivo é somente mudar o texto hello word para olá mundo ele faz
+    mTextWelcome.value = "Olá mundo"
+  
+  Para simular um evento de login
+  1º na activity ele cria uma variavel chamada login onde pega o valor do editName.text.toString()
+  2º passa esse parametro para a função login criada no passo anterior
+  3º vai na função login dentro da viewModel e coloca a recpção do parametro
+  4º Cria uma classe falsa de banco de dados chamada PersonRepository
+  5º dentro dessa classe faz a função login recebendo o login do tipo String e verificando se (login != "")
+  6º Na viewModel crio a variável da classe do banco de dados
+  7º dentro da função login dentro da viewModel crio a variável retorno recebendo o retorno da função do repositorio criado anteriormente, passando o login como parametro
+  8º Para poder a activity observar esse evento de login, vou na viewModel e crio private var mLogin = MutableLiveData<Boolean>() e depois var login = mLogin
+    Dessa forma será possível Observar na activity
+  9º chamar na activity a viewModel.login.observer(this, Observer{
+      if(it){ <-- neste caso o it é booleano pois o MutableLiveData da variavel login em viewModel é booleana
+              Toast.makeText(applicationContext, "Sucesso", Toast.LENGTH_SHORT).show() <-- Aqui foi usado o applicationContext pois é possível dar erro usando this   
+            }esel{
+              Toast.makeText(applicationContext, "Falha", Toast.LENGTH_SHORT).show()
+            }
+  })
+  10º por ultimo vai na função login na viewModel e faz mLogin.value = retorno onde esse retorno é da função login do repositorio
