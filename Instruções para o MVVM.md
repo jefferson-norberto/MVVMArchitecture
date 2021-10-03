@@ -1,8 +1,7 @@
 # MVVMArchitecture
 Learn MVVM Android Architecture
 
-Esta é uma alteração em outra linha do tempo
-
+Este foi um pequeno exemplo de alteração
 
 1º Passo é adicionar o a extenção androidx.lifecycle:
   implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0' <- lembrando que os números finais é referente a versão
